@@ -27,9 +27,9 @@ pipeline {
         stage('Check Docker Container') {
             steps {
                 script {
+                    sh 'echo "Build id = $BUILD_ID"'
                     sh 'result=$(curl http://localhost:8081 | grep Hello | wc -l)'
                     sh '[ "result" = "1" ] && echo "Test passed" || { echo "Test failed"; exit 1; }'
-                    sh 'echo "Build id = $BUILD_ID"'
                 }
             }
         }
