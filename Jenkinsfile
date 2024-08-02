@@ -19,7 +19,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'docker run -d -p 8081:80 --name test-nginx-container test-nginx-image'
+                    sh 'docker rm -f test-nginx-container && docker run -d -p 8081:80 --name test-nginx-container test-nginx-image'
                 }
             }
         }
