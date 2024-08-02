@@ -27,8 +27,8 @@ pipeline {
         stage('Check Docker Container') {
             steps {
                 script {
-                    sh 'curl http://localhost:8081 || true'
-                    echo "Test passed"
+                    sh 'result=$(curl http://localhost:8081 | grep Hello | wc -l)'
+                    sh '[ "result" = "1" ] && echo "Test passed" || { echo "Test failed"; exit 1; }'
                 }
             }
         }
