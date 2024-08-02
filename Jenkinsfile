@@ -11,6 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    sh 'echo "Build id = $BUILD_ID" >> index.html'
                     sh 'docker build -t test-nginx-image .'
                 }
             }
@@ -27,7 +28,6 @@ pipeline {
         stage('Check Docker Container') {
             steps {
                 script {
-                    sh 'echo "Build id = $BUILD_ID" >> index.html'
                     sh 'result=$(curl http://localhost:8081 | grep Hello | wc -l)'
                 }
             }
