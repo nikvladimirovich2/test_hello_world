@@ -37,8 +37,7 @@ pipeline {
     post {
         always {
             script {
-                sh 'docker stop test-nginx-container || true'
-                sh 'docker rm test-nginx-container || true'
+                sh 'docker ps'
             }
         }
     }
