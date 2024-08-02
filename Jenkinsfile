@@ -23,6 +23,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Check Docker Container') {
+            steps {
+                script {
+                    sh 'curl http://localhost:8081'
+                }
+            }
+        }
     }
 
     post {
